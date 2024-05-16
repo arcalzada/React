@@ -6,8 +6,7 @@ import Product from './Product.jsx';
 import ContactInfo from './ContactInfo.jsx';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { APIURL } from './Configuration.js';
-
+import { BACKEND_URL } from './Config.js'
 
 const router = createBrowserRouter([{
   path: "/",
@@ -18,9 +17,9 @@ const router = createBrowserRouter([{
     loader: async () => {
       const queryParams = new URLSearchParams().toString();
       if (queryParams) {
-        return await fetch(`${APIURL}/shops/products/?${queryParams}`)
+        return await fetch(`${BACKEND_URL}/shops/products/?${queryParams}`)
       };
-      return await fetch(`${APIURL}/shops/products/`);
+      return await fetch(`${BACKEND_URL}/shops/products/`);
     }
   },{
     path: "contactInfo",
@@ -29,7 +28,7 @@ const router = createBrowserRouter([{
     path: "products/:id",
     element: <Product/>,
     loader: async ({ params }) => {
-      return await fetch(`${APIURL}/shops/products/${params.id}/`)
+      return await fetch(`${BACKEND_URL}/shops/products/${params.id}/`)
     }
   }],
 }]);

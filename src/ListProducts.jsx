@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { APIURL } from './Configuration.js'
+import { BACKEND_URL } from './Config.js'
 
 const INITIAL_PAGE = 1;
 
@@ -16,7 +16,7 @@ function ListPage() {
 
   const fetchProducts = async (page) => {
     try {
-      const response = await fetch(`${APIURL}/shops/products/?page=${page}`);
+      const response = await fetch(`${BACKEND_URL}/shops/products/?page=${page}`);
       const data = await response.json();
       setProductList(data.results);
       setTotalPages(Math.ceil(data.count / 5)); // Suponiendo que hay 5 productos por página
